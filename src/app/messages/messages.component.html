@@ -1,0 +1,45 @@
+<div class="container mt-1">
+  <div class="row d-flex justify-content-center">
+      <div class="btn-group" (click)="loadMessages()" id="labeldiv">
+          <label class="btn btn-info" [(ngModel)]="messageContainer" btnRadio="Unread" tabindex="0"
+            role="button"><i class="fa fa-envelope fa-2x"></i></label>
+          <label class="btn btn-info" [(ngModel)]="messageContainer" btnRadio="Inbox" tabindex="0"
+            role="button"><i class="fa fa-envelope-open fa-2x"></i></label>
+          <label class="btn btn-info" [(ngModel)]="messageContainer" btnRadio="Outbox" tabindex="0"
+            role="button"><i class="fa fa-mail-forward fa-2x"></i></label>
+        </div>  
+  </div>
+  <div class="row mt-3 text-center" style="font-size: 150%" *ngIf="messages.length === 0">
+      There is no messages at {{messageContainer}}
+  </div>
+  <div class="row d-flex justify-content-center" *ngIf="messages.length !== 0">
+        <table class="mt-3 table table-striped table-hover" style="cursor: pointer">
+            <tr>
+              <th class="text-center" style="width: 40%">content</th>
+              <th class="text-center" *ngIf="messageContainer !== 'Outbox'" style="width: 20%">
+                from
+              </th>
+              <th class="text-center" *ngIf="messageContainer === 'Outbox' " style="width: 20%">
+                to
+              </th>
+              <th class="text-center" style="width: 20%">Date</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let m of messages" [routerLink]="['/members', messageContainer === 'Outbox' ? m.reciverId : m.senderId]" [queryParams]="{ tab : 3 }">
+              <td class="text-center">{{m.content}}</td>
+              <td class="text-center"  *ngIf="messageContainer === 'Outbox'"><img src="{{m.reciverPhotoUrl}}" class="rounded-circle"/>&nbsp;{{m.reciverKnownAs}}</td>
+              <td class="text-center" *ngIf="messageContainer !== 'Outbox'"><img src="{{m.senderPhotoUrl}}" class="rounded-circle"/>&nbsp;{{m.senderKnownAs}}</td>
+              <td class="text-center" >{{m.dateSent | timeAgo}}</td>
+              <td class="text-center" >
+                <button (click)="deleteMessage(m.id)" (click)="$event.stopPropagation()" class="btn-danger btn"><i class="fa fa-trash-o"></i></button>
+              </td>
+            </tr>
+          </table>
+  </div>
+  <div class="d-flex justify-content-center"  *ngIf="messages.length !== 0">
+      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" (pageChanged)="pageChanged($event)"
+          [itemsPerPage]="pagination.itemsPerPage" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+          lastText="&raquo;">
+      </pagination>
+  </div>
+</div>

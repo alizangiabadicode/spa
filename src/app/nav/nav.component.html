@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/home']">Dating App</a>
+
+    <ul class="navbar-nav mr-auto" *ngIf="loggedIn()" >
+      <li class="nav-item"routerLinkActive="active">
+        <a class="nav-link"  [routerLink]="['/members']"  >Matches</a>
+      </li>
+      <li class="nav-item"routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/lists']">Lists</a>
+      </li>
+      <li class="nav-item"routerLinkActive="active">
+        <a class="nav-link"  [routerLink]="['/messages']">Messages</a>
+      </li>
+    </ul>
+
+
+    <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      
+    <img src="{{mainphoto || '../assets/defaultuser.png'}}" class="img-thumbnail mr-2" alt="">
+      <a class="dropdown-toggle text-light" dropdownToggle >
+        Welcome {{auth.decodedone.unique_name | titlecase }}
+      </a>
+      <div class="dropdown-menu mt-3" *dropdownMenu>
+        <a class="dropdown-item" [routerLink]="['/member/edit']" > <i class="fa fa-user"></i>  Edit Profile</a>
+        <div class="dropdown divider"></div>
+        <a class="dropdown-item" href=""  (click)="logOut()"> <i class="fa fa-sign-out"></i>  Logout</a>
+      </div>
+    </div>
+
+
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit) = "login()">
+      
+      <input class="form-control mr-sm-2"type="text"    name="username" #username="ngModel" placeholder="Username" required aria-label="Search" [(ngModel)]="model.username">
+      <input class="form-control mr-sm-2"type="password"name="password" #password = "ngModel" placeholder="Password" required aria-label="Search" [(ngModel)]="model.password">
+      <button class="btn btn-success my-2 my-sm-0" [disabled]= "!loginForm.valid" type="submit">Login</button>
+    </form>
+  </div>
+</nav>
+<!-- <pre>
+  form valid = {{loginForm.valid}}
+  form touched = {{loginForm.touched}}
+  form dirty = {{loginForm.dirty}}
+  form values = {{loginForm.value | json}}
+  username valid = {{username.valid}}
+  username touched = {{username.touched}}
+  username dirty = {{username.dirty}}
+  username value = {{username.value}}
+  password valid = {{username.valid}}
+  password touched = {{username.touched}}
+  password dirty = {{username.dirty}}
+  password value = {{username.value}}
+</pre> -->

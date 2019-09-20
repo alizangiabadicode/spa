@@ -1,0 +1,29 @@
+<div class='card mb-4'>
+    <div class='card-img-wrapper'>
+      <img class="card-img-top" src="{{user.photoUrl || '../../assets/defaultuser.png' }}" alt="{{user.username}}"/>
+      <ul class="list-inline text-center member-icons animate">
+        <li class="list-inline-item">
+          <button class="btn btn-primary fa fa-user" [routerLink]="['/members', user.id]" ></button>
+        </li>
+        <li class="list-inline-item" (click)="like(user.id)">
+          <button class="btn btn-primary fa fa-heart"></button>
+        </li>
+        <li class="list-inline-item">
+          <a class="btn btn-primary "[routerLink]="['/members', user.id]" [queryParams] = "{tab:3}"><i class="fa fa-envelope"></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body p-1">
+      <h6 class="card-title text-center mb-1">
+        <div *ngIf="user.gender === 'male' " >
+          
+        <i class="fa fa-user"></i> {{user.username}}, {{user.age}}
+        </div>
+        <div  *ngIf="user.gender === 'female' " >
+
+          <i class="fa fa-female"></i> {{user.username}}, {{user.age}}
+        </div>
+      </h6>
+      <p class="text-muted card-title text-center">{{user.city}}</p>
+    </div>
+</div>

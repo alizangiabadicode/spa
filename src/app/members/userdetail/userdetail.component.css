@@ -1,0 +1,29 @@
+.size{
+    display: block;
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* width: 50%; */
+    height: 85%;
+    width: 85%;
+}
+.card-body {
+    height: 100%;
+    width: 100%;
+}
+.card-footer{
+    padding: 4vh;
+    background-color :  white;
+    border-top: none;
+}
+
+/* felan inja ezafe mikonm */
+
+.tab-panel {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    /* margin-top: 2vh; */
+  }
+  

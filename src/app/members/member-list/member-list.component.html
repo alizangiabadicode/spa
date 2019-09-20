@@ -1,0 +1,47 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-5">
+        number of found users : {{pagination.totalItems}}
+    </h1>
+    <div class="row pl-3 d-flex justify-content-center">
+        <div class="form-group">
+            <input [(ngModel)]="pagination.minAge"  class="form-control mx-4" min="18" max="99" placeholder="minimum Age"
+                type="number" />
+        </div>
+        <div class="form-group">
+            <input [(ngModel)]="pagination.maxAge" class="form-control mx-4" min="18" max="99" placeholder="maximum Age"
+                type="number" />
+        </div>
+        <div class="form-group">
+            <select class="form-control mx-4" [(ngModel)]="pagination.gender">
+                <option *ngFor="let i of genders" value="{{i.value}}">
+                    {{i.name}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="button" class="btn btn-info ml-4" value="submit criteria" (click)="submitCriteria()" />
+        </div>
+        <div class="form-group">
+            <input (click)="resetCriteria()" type="button" class="btn btn-danger" value="reset criteria" />
+        </div>
+        <div (click)="changeOrder()" class="form-group btn-group" btnRadioGroup [(ngModel)]="pagination.order">
+            <label class="btn btn-success" btnRadio="create"
+                   tabindex="0" role="button">created time</label>
+            <label class="btn btn-success" btnRadio=""
+                   tabindex="0" role="button">last seen</label>
+
+          </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div *ngFor="let user of userss" class="col-lg-2 col-md-3 col-sm-6">
+            <app-membercard [user]="user"></app-membercard>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" (pageChanged)="pageChanged($event)"
+            [itemsPerPage]="pagination.itemsPerPage" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+            lastText="&raquo;">
+        </pagination>
+    </div>
+</div>

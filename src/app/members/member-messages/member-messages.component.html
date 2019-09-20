@@ -1,0 +1,35 @@
+<div  class="row" *ngIf="messages.length === 0">
+  <div class="col-12  text-center text-danger">
+    There is no messages yet!
+  </div>
+</div>
+<div id="main" *ngIf="messages.length !== 0">
+  <div *ngFor="let m of messages" class="row">
+    <div class="col-6">
+      <div class="container mt-2" *ngIf="m.senderId === reciverId">
+        <!-- sender is reciver -->
+
+        <img src="{{m.senderPhotoUrl}}" alt="avatar" />
+        <p class="text-center">{{m.content}}</p>
+        <span class="time-right">{{m.dateSent | timeAgo}}</span>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="container darker mt-2" *ngIf="m.senderId !== reciverId">
+        <!-- sender is me -->
+        <img src="{{m.senderPhotoUrl}}" alt="avatar" class="right">
+        <p class="text-center">{{m.content}}</p>
+        <span class="time-left">{{m.dateSent | timeAgo}}</span><br />
+        <span class="time-left small" *ngIf="!m.isRead" style="color: red">(Unread)</span>
+        <span class="time-left text-success small" *ngIf="m.isRead">(Read at {{m.dateRead | timeAgo}})</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="row mt-2">
+  <form class="input-group w-100 px-1 mx-1" #sendForm="ngForm" (ngSubmit)="sendMessage()"  >
+    <input type="text" class="form-control" name="content" [(ngModel)]="messageToSend.content" required/>
+    <button [disabled]="!sendForm.valid" type="submit" class="btn btn-success"><i class="fa fa-send"></i></button>
+  </form>
+</div>

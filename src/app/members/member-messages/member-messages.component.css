@@ -1,0 +1,64 @@
+.container {
+    border: 2px solid rgba(223, 255, 78, 0.561);
+    background-color: rgba(225, 243, 147, 0.561);
+    padding: 10px;
+    border-radius: 10px;
+    color: rgb(114, 0, 0);
+    max-width: 150%;
+    float: left;
+}
+.darker {
+    border-color: rgb(54, 235, 78);;
+    background-color: rgba(172, 255, 172, 0.561);
+    float: right;
+    color: rgb(0, 78, 131);
+}
+.time-left {
+    color: rgb(255, 143, 195);
+}
+
+/* .container::after {
+    content: "";
+    clear: both;
+    display: table;
+} */
+.container img {
+    float: left;
+    max-width: 20%;
+    width: 100%;
+    border-radius: 50%;
+    vertical-align: center;
+}
+
+.container img.right {
+    float: right;
+}
+p {
+    vertical-align: center;
+    padding-bottom: 2%;
+}
+
+/* Style time text */
+.time-right {
+    padding-bottom: 0.5%;
+    float: right;
+    font-size: 60%;
+    color: rgb(156, 0, 156);
+  }
+  
+  /* Style time text */
+  .time-left {
+    float: left;
+    color:  rgb(156, 0, 156);
+    font-size: 60%;
+  }
+
+  .container :hover .darker {
+      background-color: transparent;
+  }
+
+#main {
+    overflow-y: scroll;
+    height: 80vh;
+    overflow-x: hidden
+}

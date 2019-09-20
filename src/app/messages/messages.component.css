@@ -1,0 +1,15 @@
+img{
+    width: 40%;
+}
+#labeldiv {
+    width: 50%;
+}
+td{
+    vertical-align: middle;
+    align-content: center;
+}
+/* th{
+    
+    align-content: center;
+
+} */

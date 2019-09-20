@@ -1,0 +1,20 @@
+<div class="container text-center">
+
+<h1 class="text-center">total users {{likerorlikee === 'likers'? 'who liked u': 'who u liked'}} {{users.length}}</h1>
+<div class="btn-group" btnRadioGroup [(ngModel)]="likerorlikee" (click) = "loadUsers(likerorlikee)">
+    <label class="btn btn-success" btnRadio="likers" tabindex="0" role="button">likers</label>
+    <label class="btn btn-success" btnRadio="likees" tabindex="0" role="button">likees</label>
+</div>
+<div class=" row d-flex justify-content-center">
+    <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+        <app-membercard [user]="user"></app-membercard>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" (pageChanged)="pageChanged($event)"
+        [itemsPerPage]="pagination.itemsPerPage" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;">
+    </pagination>
+</div>
+</div>
